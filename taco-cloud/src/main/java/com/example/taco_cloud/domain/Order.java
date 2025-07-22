@@ -7,10 +7,18 @@ import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
 public class Order {
+
+    private static final Long serialVersionUid = 1L;
+
+    private long id;
+
+    private Date placedAt;
+
     @NotBlank(message = "Name is required")
     private String deliveryName;
 
@@ -29,7 +37,7 @@ public class Order {
     @CreditCardNumber(message = "Not a valid Credit Card number")
     private String ccNumber;
 
-    @Pattern(regexp = "^(0[1-9] | 1[0-2]) ([\\/]) ([2-9] [0-9])$",
+    @Pattern(regexp = "^(0[1-9]|1[0-2])/([2-9][0-9])$",
     message = "Must be formatted MM/YY")
     private String ccExpiration;
 
