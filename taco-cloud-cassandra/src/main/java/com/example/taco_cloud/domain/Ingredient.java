@@ -1,19 +1,20 @@
 package com.example.taco_cloud.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.example.taco_cloud.UDT.IngredientUDT;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
 
 @Data
-@Entity
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+//@NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
+@Table("ingredients")
 public class Ingredient {
 
-    @Id
+    @PrimaryKey
     private final String id;
 
     private final String name;
@@ -22,5 +23,12 @@ public class Ingredient {
 
     public enum Type {
         WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
+    }
+
+    public IngredientUDT toUDT() {
+        return new IngredientUDT(
+                this.name,
+                this.type
+        );
     }
 }

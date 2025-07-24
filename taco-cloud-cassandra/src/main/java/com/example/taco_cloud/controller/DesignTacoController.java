@@ -4,10 +4,10 @@ import com.example.taco_cloud.domain.Ingredient;
 import com.example.taco_cloud.domain.Order;
 import com.example.taco_cloud.domain.Taco;
 import com.example.taco_cloud.repository.IngredientRepository;
+import com.example.taco_cloud.repository.TacoRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -31,10 +31,13 @@ import java.util.stream.StreamSupport;
 public class DesignTacoController {
 
     private final IngredientRepository ingredientRepository;
+    private final TacoRepository tacoRepository;
 
     @Autowired
-    public DesignTacoController(IngredientRepository ingredientRepository) {
+    public DesignTacoController(IngredientRepository ingredientRepository,
+                                TacoRepository tacoRepository) {
         this.ingredientRepository = ingredientRepository;
+        this.tacoRepository = tacoRepository;
     }
 
     @ModelAttribute
@@ -83,6 +86,7 @@ public class DesignTacoController {
             return "design";
         }
 
+        tacoRepository.save(taco);
         order.addTaco(taco);
         log.info("Processing: {}", taco);
 
