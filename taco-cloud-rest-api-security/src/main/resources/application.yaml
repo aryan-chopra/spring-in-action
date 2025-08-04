@@ -1,0 +1,24 @@
+spring:
+  data:
+    rest:
+      base-path: /data-api
+  cassandra:
+    keyspace-name: tacocloud
+    schema-action: recreate
+    port: 9042
+    contact-points: 127.0.0.1
+    local-datacenter: datacenter1
+  application:
+    name=taco-cloud
+  datasource:
+    generate-unique-name: false
+    name: tacocloud
+  mongodb:
+    host: localhost
+    port: 27017
+    database: tacocloud
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

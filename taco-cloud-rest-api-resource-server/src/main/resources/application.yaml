@@ -1,0 +1,20 @@
+spring:
+  application:
+    name=taco-cloud
+  data:
+    rest:
+      base-path: /data-api
+  datasource:
+    generate-unique-name: false
+    name: tacocloud
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:9000/oauth2/jwks
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+        web: DEBUG

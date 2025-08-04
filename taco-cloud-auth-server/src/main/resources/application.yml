@@ -1,0 +1,13 @@
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+        security: DEBUG
+
+server:
+  port: 9000
+
+spring:
+  application:
+    name:taco-cloud-auth-server
